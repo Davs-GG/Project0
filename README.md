@@ -6,15 +6,16 @@ sequenceDiagram
     participant User
     participant browser
     participant server
-    
     User->>browser: Uses the botton save
     browser->>server: User input
-    Note right of browser:It is an HTTP POST request to the server address new_note. The server responds with HTTP status code 302. This is a URL redirect, with which the server asks the browser to perform a new HTTP GET request to the address defined in the header's Location - the address notes.
-    browser->>server: HTTP POST /new_note
+    #is an HTTP POST request to the server address new_note. The server responds with HTTP status code 302. This is a URL redirect,the server asks the browser to perform a new HTTP GET request to the address defined in the header's Location - the address notes.
+    browser->>server: HTTP POST /new_note, the browser to perform a new HTTP GET
     server-->>browser: 302 redirect
+    Note right of browser: The server responds with HTTP status code 302. This is a URL redirect
     browser->>server: HTTP GET /notes
-    Note right of browser: So, the browser reloads the Notes page. The reload causes three more HTTP requests: fetching the style sheet (main.css), the JavaScript code (main.js), and the raw data of the notes (data.json).
+     #So, the browser reloads the Notes page. The reload causes three more HTTP requests: fetching the style sheet (main.css), the JavaScript code (main.js), and the raw data of the notes (data.json).
     server-->>browser: Reload Page
+    Note right of browser: The reload causes three more HTTP requests
     activate server
     browser->>server:  HTTP GET main.css
     server-->>browser: main.css
